@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     int count = 0;
     public Text countText;
     [SerializeField] Text highscoreText;
+    [SerializeField] Text finalScoreText;
+
     [SerializeField] GameObject gameOverScreen;
     bool gameIsOver = false;
     public bool GameIsOver
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
     {
         gameIsOver = true;
         countText.gameObject.SetActive(false);
+        finalScoreText.text = "Final Score: " + count;
         gameOverScreen.SetActive(true);
 
 

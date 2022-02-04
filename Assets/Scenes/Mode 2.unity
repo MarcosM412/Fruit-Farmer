@@ -4742,6 +4742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   countText: {fileID: 598753586}
   highscoreText: {fileID: 933734944}
+  finalScoreText: {fileID: 777629283}
   gameOverScreen: {fileID: 983799428}
   timerText: {fileID: 966117481}
 --- !u!1001 &1162953323

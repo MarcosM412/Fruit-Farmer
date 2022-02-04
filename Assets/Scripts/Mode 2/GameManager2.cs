@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class GameManager2 : MonoBehaviour
 {
     public Text countText;
-
     [SerializeField] Text highscoreText;
+    [SerializeField] Text finalScoreText;
 
     [SerializeField] GameObject gameOverScreen;
     bool gameIsOver = false;
@@ -20,8 +20,8 @@ public class GameManager2 : MonoBehaviour
         }
     }
 
-    private float timer = 0;
-    private float waitTime = 60;
+    private float timer = 60;
+    
     [SerializeField] Text timerText;
 
     Counter counter;
@@ -52,6 +52,7 @@ public class GameManager2 : MonoBehaviour
         gameIsOver = true;
         countText.gameObject.SetActive(false);
         timerText.gameObject.SetActive(false);
+        finalScoreText.text = "Final Score: " + counter.Count;
         gameOverScreen.SetActive(true);
 
 
@@ -67,9 +68,9 @@ public class GameManager2 : MonoBehaviour
 
     void Timer()
     {
-        if (timer < waitTime)
+        if (timer > 0)
         {
-            timer += Time.deltaTime;
+            timer -= Time.deltaTime;
             timerText.text = "Timer: " + Mathf.Round(timer);
         }
         else
