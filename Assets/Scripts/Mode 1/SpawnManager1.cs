@@ -9,17 +9,13 @@ public class SpawnManager1 : MonoBehaviour
     private float upperXLimit = 12.5f;
     private float lowerSpawnTime = 1;
     private float upperSpawnTime = 3;
+    private float increaseInterval = 10;
 
     // Start is called before the first frame update
     void Start()
     {
         Invoke("SpawnApples", 1);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        InvokeRepeating("DecreaseSpawnTime", increaseInterval, increaseInterval);
     }
 
     void SpawnApples()
@@ -31,6 +27,14 @@ public class SpawnManager1 : MonoBehaviour
 
         float spawnTime = Random.Range(lowerSpawnTime, upperSpawnTime);
         Invoke("SpawnApples", spawnTime);
+    }
+
+    void DecreaseSpawnTime()
+    {
+        if (lowerSpawnTime != 0.2f)
+            lowerSpawnTime -= 0.2f;
+        if (upperSpawnTime != 1.0f)
+            upperSpawnTime -= 0.2f;
     }
 
 }

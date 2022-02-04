@@ -28,38 +28,58 @@ public class MainManager : MonoBehaviour
     [System.Serializable]
     class SaveData
     {
-        public int bestScore1;
-        public int bestScore2;
-        public string highScoreName1;
-        public string highScoreName2;
+        public int bestScore;
+        public string highScoreName;
     }
 
-    public void SaveScore()
+    public void SaveScore1()
     {
-        SaveData data = new SaveData();
-        data.bestScore1 = bestScore1;
-        data.bestScore2 = bestScore2;
-        data.highScoreName1 = highScoreName1;
-        data.highScoreName2 = highScoreName2;
+        SaveData data = new SaveData
+        {
+            bestScore = bestScore1,
+            highScoreName = highScoreName1
+        };
 
         string json = JsonUtility.ToJson(data);
 
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
+        File.WriteAllText(Application.persistentDataPath + "/savefile1.json", json);
     }
 
-    public void LoadScore()
+    public void SaveScore2()
     {
-        string path = Application.persistentDataPath + "/savefile.json";
+        SaveData data = new SaveData
+        {
+            bestScore = bestScore2,
+            highScoreName = highScoreName2
+        };
+
+        string json = JsonUtility.ToJson(data);
+
+        File.WriteAllText(Application.persistentDataPath + "/savefile2.json", json);
+    }
+
+    public void LoadScores()
+    {
+        string path = Application.persistentDataPath + "/savefile1.json";
 
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-            bestScore1 = data.bestScore1;
-            bestScore2 = data.bestScore2;
-            highScoreName1 = data.highScoreName1;
-            highScoreName2 = data.highScoreName2;
+            bestScore1 = data.bestScore;
+            highScoreName1 = data.highScoreName;
+        }
+
+        path = Application.persistentDataPath + "/savefile2.json";
+
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            bestScore2 = data.bestScore;
+            highScoreName2 = data.highScoreName;
         }
     }
 }

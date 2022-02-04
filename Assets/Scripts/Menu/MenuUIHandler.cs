@@ -17,7 +17,7 @@ public class MenuUIHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MainManager.Instance.LoadScore();
+        MainManager.Instance.LoadScores();
 
         if (MainManager.Instance.bestScore1 > 0)
         {
@@ -43,6 +43,7 @@ public class MenuUIHandler : MonoBehaviour
 #else
         Application.Quit();
 #endif
-        MainManager.Instance.SaveScore();
+        MainManager.Instance.SaveScore1();
+        MainManager.Instance.SaveScore2();
     }
 }
