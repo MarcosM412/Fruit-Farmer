@@ -16,5 +16,6 @@ public class SetGravity : MonoBehaviour
     void IncreaseGravity()
     {
         gravityMultiplier += 0.1f;
+        Physics.gravity = MainManager.Instance.originalGravity * gravityMultiplier;
     }
 }

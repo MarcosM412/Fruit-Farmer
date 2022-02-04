@@ -29,6 +29,9 @@ public class GameManager2 : MonoBehaviour
     private void Start()
     {
         counter = GameObject.Find("Red Player Box").GetComponent<Counter>();
+
+        // sets back to orignal Unity-defined gravity value in case Mode 1 was already launched
+        Physics.gravity = MainManager.Instance.originalGravity;
     }
 
     // Update is called once per frame

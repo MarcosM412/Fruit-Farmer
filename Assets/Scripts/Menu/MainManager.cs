@@ -12,6 +12,7 @@ public class MainManager : MonoBehaviour
     public string highScoreName1;
     public string highScoreName2;
     public string userName;
+    public Vector3 originalGravity = Physics.gravity;
 
     private void Awake()
     {
