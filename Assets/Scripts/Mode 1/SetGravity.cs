@@ -5,7 +5,7 @@ using UnityEngine;
 public class SetGravity : MonoBehaviour
 {
     private float gravityMultiplier = 0.1f;
-    private float increaseInterval = 15;
+    private float increaseInterval = 10;
     // Start is called before the first frame update
     void Start()
     {

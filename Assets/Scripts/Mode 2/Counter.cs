@@ -14,9 +14,9 @@ public class Counter : MonoBehaviour
     {
         Destroy(other.gameObject);
 
-        if (gameObject.tag == other.tag)
+        if (gameObject.CompareTag(other.tag))
             Count++;
-        else if (other.tag == "Rotten")
+        else if (other.CompareTag("Rotten"))
             Count -= 5;
         CounterText.text = "Fruit Collected: " + Count;
     }
