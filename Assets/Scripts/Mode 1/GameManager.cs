@@ -38,7 +38,6 @@ public class GameManager : MonoBehaviour
     // move game state to game over and display game over screen
     public void GameOver()
     {
-        // display text to restart or quit
         gameIsOver = true;
         countText.gameObject.SetActive(false);
         gameOverScreen.SetActive(true);

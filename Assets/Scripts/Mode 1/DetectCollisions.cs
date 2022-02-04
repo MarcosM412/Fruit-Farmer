@@ -14,20 +14,21 @@ public class DetectCollisions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        // gameObject is fruit
+        // other is bucket
+
         Destroy(gameObject);
 
-        if (gameManager.GameIsOver)
+        if (!gameManager.GameIsOver)
         {
             if (gameObject.CompareTag(other.tag))
             {
                 gameManager.IncreaseCount();
             }
-            else if (other.gameObject.CompareTag("Rotten"))
+            else if (gameObject.CompareTag("Rotten"))
             {
                 gameManager.GameOver();
             }
         }
     }
-
-    
 }

@@ -1379,8 +1379,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputName: {fileID: 1238861369}
-  mode1Text: {fileID: 0}
-  mode2Text: {fileID: 0}
+  mode1Text: {fileID: 57676233}
+  mode2Text: {fileID: 1880960215}
 --- !u!1 &1279353605
 GameObject:
   m_ObjectHideFlags: 0

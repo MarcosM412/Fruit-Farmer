@@ -5,17 +5,24 @@ using UnityEngine;
 public class SpawnManager1 : MonoBehaviour
 {
     public GameObject[] applePrefabs;
+
     private float lowerXLimit = 3;
     private float upperXLimit = 12.5f;
+
     private float lowerSpawnTime = 1;
     private float upperSpawnTime = 3;
+
     private float increaseInterval = 10;
+
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         Invoke("SpawnApples", 1);
         InvokeRepeating("DecreaseSpawnTime", increaseInterval, increaseInterval);
+        
     }
 
     void SpawnApples()
@@ -26,7 +33,8 @@ public class SpawnManager1 : MonoBehaviour
         Instantiate(applePrefabs[appleIndex], spawnPos, applePrefabs[appleIndex].transform.rotation);
 
         float spawnTime = Random.Range(lowerSpawnTime, upperSpawnTime);
-        Invoke("SpawnApples", spawnTime);
+        if (!gameManager.GameIsOver) 
+            Invoke("SpawnApples", spawnTime);
     }
 
     void DecreaseSpawnTime()
@@ -35,6 +43,8 @@ public class SpawnManager1 : MonoBehaviour
             lowerSpawnTime -= 0.2f;
         if (upperSpawnTime != 1.0f)
             upperSpawnTime -= 0.2f;
+        if (gameManager.GameIsOver)
+            CancelInvoke("DecreaseSpawnTime");
     }
 
 }

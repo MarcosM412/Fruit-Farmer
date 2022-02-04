@@ -7,14 +7,18 @@ public class PlayerController1 : MonoBehaviour
     public GameObject redBucket;
     public GameObject greenBucket;
     public GameObject yellowBucket;
+
     private float timer = 0;
     private float waitTime = 0.25f;
-    private Vector3 offset = new Vector3(0, -0.5f, 0);
+
+    private Vector3 offset = new Vector3(0, -0.5f, 0); // bucket position offset from player
+
+    GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -22,7 +26,8 @@ public class PlayerController1 : MonoBehaviour
     {
         // Spawn buckets based on arrow keys and timer
         Timer();
-        SpawnBuckets();
+        if(!gameManager.GameIsOver)
+            SpawnBuckets();
     }
 
     void Timer()
