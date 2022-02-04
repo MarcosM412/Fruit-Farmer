@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager2 : MonoBehaviour
 {
-    int count = 0;
     public Text countText;
+
     [SerializeField] Text highscoreText;
+
     [SerializeField] GameObject gameOverScreen;
     bool gameIsOver = false;
     public bool GameIsOver
@@ -19,20 +20,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private float timer = 0;
+    private float waitTime = 60;
+
+    Counter counter;
+
+    private void Start()
+    {
+        counter = GameObject.Find("Red Player Box").GetComponent<Counter>();
+    }
+
     // Update is called once per frame
     void Update()
     {
+        if (!gameIsOver)
+            Timer();
+
         if (Input.GetKeyDown(KeyCode.Space))
             SceneManager.LoadScene(1);
         else if (Input.GetKeyDown(KeyCode.Q))
             SceneManager.LoadScene(0);
-    }
-
-    // increase score
-    public void IncreaseCount()
-    {
-        count++;
-        countText.text = "Fruit Collected " + count;
     }
 
     // move game state to game over and display game over screen
@@ -43,13 +50,21 @@ public class GameManager : MonoBehaviour
         gameOverScreen.SetActive(true);
 
 
-        if (count > MainManager.Instance.bestScore1)
+        if (counter.Count > MainManager.Instance.bestScore2)
         {
             highscoreText.gameObject.SetActive(true);
 
-            MainManager.Instance.bestScore1 = count;
+            MainManager.Instance.bestScore2 = counter.Count;
             MainManager.Instance.highScoreName1 = MainManager.Instance.userName;
-            MainManager.Instance.SaveScore1();
+            MainManager.Instance.SaveScore2();
         }
+    }
+
+    void Timer()
+    {
+        if (timer < waitTime)
+            timer += Time.deltaTime;
+        else
+            GameOver();
     }
 }
