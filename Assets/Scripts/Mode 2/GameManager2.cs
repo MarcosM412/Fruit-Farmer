@@ -22,6 +22,7 @@ public class GameManager2 : MonoBehaviour
 
     private float timer = 0;
     private float waitTime = 60;
+    [SerializeField] Text timerText;
 
     Counter counter;
 
@@ -47,6 +48,7 @@ public class GameManager2 : MonoBehaviour
     {
         gameIsOver = true;
         countText.gameObject.SetActive(false);
+        timerText.gameObject.SetActive(false);
         gameOverScreen.SetActive(true);
 
 
@@ -55,7 +57,7 @@ public class GameManager2 : MonoBehaviour
             highscoreText.gameObject.SetActive(true);
 
             MainManager.Instance.bestScore2 = counter.Count;
-            MainManager.Instance.highScoreName1 = MainManager.Instance.userName;
+            MainManager.Instance.highScoreName2 = MainManager.Instance.userName;
             MainManager.Instance.SaveScore2();
         }
     }
@@ -63,7 +65,10 @@ public class GameManager2 : MonoBehaviour
     void Timer()
     {
         if (timer < waitTime)
+        {
             timer += Time.deltaTime;
+            timerText.text = "Timer: " + Mathf.Round(timer);
+        }
         else
             GameOver();
     }
